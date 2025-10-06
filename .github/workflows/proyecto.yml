@@ -14,9 +14,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: ver credenciales
-        run: "echo ${{ secrets.DOCKER_PASSWORD }} - ${{ secrets.DOCKER_USERNAME }}"
-
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
@@ -26,15 +23,15 @@ jobs:
       - name: Build and Tag Docker Image
         run: |
           docker build `
-            -t "${{ secrets.DOCKER_USERNAME }}/proyectoFinal:latest" `
+            -t "${{ secrets.DOCKER_USERNAME }}/proyecto-final:latest" `
             -f Dockerfile `
             .
 
       - name: Push to Docker Hub
-        run: docker push "${{ secrets.DOCKER_USERNAME }}/proyectoFinal:latest"
+        run: docker push "${{ secrets.DOCKER_USERNAME }}/proyecto-final:latest"
 
       - name: Run container
-        run: docker run -d -p 3000:3000 --name test-container ${{ secrets.DOCKER_USERNAME }}/proyectoFinal:latest
+        run: docker run -d -p 3000:3000 --name test-container ${{ secrets.DOCKER_USERNAME }}/proyecto-final:latest
 
       - name: Wait for container
         run: sleep 5
