@@ -14,6 +14,10 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: ver credenciales
+        run: "echo ${{ secrets.DOCKER_PASSWORD }}"
+        run: "echo ${{ secrets.DOCKER_USERNAME }}"
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
