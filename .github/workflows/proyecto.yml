@@ -38,7 +38,7 @@ jobs:
 
       - name: Test container
         run: |
-          $response = curl --fail http://localhost:3000
+          $response = Invoke-WebRequest -Uri "http://localhost:3000" -UseBasicParsing
           if ($response -match "Hola Mundo") {
             Write-Host "Test passed: Found 'Hola Mundo'"
             exit 0
